@@ -2,7 +2,7 @@ package org.noctisdev.sciallauthapi.infraestructure.controller.advice;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-import org.noctisdev.sciallauthapi.infraestructure.dto.BaseResponse;
+import org.noctisdev.sciallauthapi.application.dto.BaseResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

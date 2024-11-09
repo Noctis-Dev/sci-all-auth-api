@@ -2,15 +2,14 @@ package org.noctisdev.sciallauthapi.application.impl;
 
 import org.noctisdev.sciallauthapi.application.IContactService;
 import org.noctisdev.sciallauthapi.domain.broker.IMessageProducer;
-import org.noctisdev.sciallauthapi.domain.events.NotificationEmailEvent;
 import org.noctisdev.sciallauthapi.domain.models.Contact;
 import org.noctisdev.sciallauthapi.domain.repository.IContactRepository;
-import org.noctisdev.sciallauthapi.infraestructure.dto.BaseResponse;
-import org.noctisdev.sciallauthapi.infraestructure.dto.request.ContactRequest;
-import org.noctisdev.sciallauthapi.infraestructure.dto.response.ContactResponse;
+import org.noctisdev.sciallauthapi.application.dto.BaseResponse;
+import org.noctisdev.sciallauthapi.application.dto.request.ContactRequest;
+import org.noctisdev.sciallauthapi.application.dto.response.ContactResponse;
+import org.noctisdev.sciallauthapi.application.factory.EventFactory;
 import org.noctisdev.sciallauthapi.utils.ThreadsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +30,15 @@ public class ContactServiceImpl implements IContactService {
         Contact savedContact = repository.create(toContact(contact));
 
         ThreadsUtil.runTask(() -> {
-            NotificationEmailEvent event = new NotificationEmailEvent();
-            event.setTo(savedContact.getEmail());
-            event.setSubject("Welcome to SCI-ALL");
-            event.setBody("Your account was created successfully");
-            messageProducer.sendEmailNotification(event);
+            EventFactory factory = EventFactory.builder()
+                    .type(contact.type())
+                    .subject("Welcome to SCI-ALL!")
+                    .message("This is a welcome message we are exited for your arrive")
+                    .email(savedContact.getEmail())
+                    .phoneNumber(savedContact.getPhoneNumber())
+                    .producer(messageProducer).build();
+
+            factory.getNotification().send();
         });
 
         return BaseResponse.builder()

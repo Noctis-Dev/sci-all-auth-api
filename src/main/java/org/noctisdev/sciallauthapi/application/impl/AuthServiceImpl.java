@@ -2,19 +2,18 @@ package org.noctisdev.sciallauthapi.application.impl;
 
 import org.noctisdev.sciallauthapi.application.*;
 import org.noctisdev.sciallauthapi.domain.broker.IMessageProducer;
-import org.noctisdev.sciallauthapi.domain.events.NotificationWhatsappEvent;
 import org.noctisdev.sciallauthapi.domain.models.Contact;
 import org.noctisdev.sciallauthapi.domain.models.Credential;
 import org.noctisdev.sciallauthapi.domain.models.Token;
 import org.noctisdev.sciallauthapi.domain.models.User;
 import org.noctisdev.sciallauthapi.domain.models.enums.UserStatus;
-import org.noctisdev.sciallauthapi.infraestructure.dto.BaseResponse;
-import org.noctisdev.sciallauthapi.infraestructure.dto.request.CredentialRequest;
-import org.noctisdev.sciallauthapi.infraestructure.dto.response.SignUpResponse;
-import org.noctisdev.sciallauthapi.infraestructure.dto.response.UserResponse;
+import org.noctisdev.sciallauthapi.application.dto.BaseResponse;
+import org.noctisdev.sciallauthapi.application.dto.request.CredentialRequest;
+import org.noctisdev.sciallauthapi.application.dto.response.SignUpResponse;
+import org.noctisdev.sciallauthapi.application.dto.response.UserResponse;
+import org.noctisdev.sciallauthapi.application.factory.EventFactory;
 import org.noctisdev.sciallauthapi.utils.ThreadsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -45,10 +44,15 @@ public class AuthServiceImpl implements IAuthService {
         Token savedToken = tokenService.createToken();
 
         ThreadsUtil.runTask(() -> {
-            NotificationWhatsappEvent event = new NotificationWhatsappEvent();
-            event.setDestination(contact.getPhoneNumber());
-            event.setMessage("SCI-ALL Verification Code: " + savedToken.getToken());
-            messageProducer.sendWhatsappNotification(event);
+            EventFactory factory = EventFactory.builder()
+                    .type(request.type())
+                    .subject("Verification code SCI-ALL")
+                    .message("you SCI-ALL Verification Code: " + savedToken.getToken())
+                    .email(contact.getEmail())
+                    .phoneNumber(contact.getPhoneNumber())
+                    .producer(messageProducer).build();
+
+            factory.getNotification().send();
         });
 
         Credential savedCredential = credentialService.create(request, savedToken, contact);

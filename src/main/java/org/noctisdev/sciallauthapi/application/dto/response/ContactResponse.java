@@ -1,4 +1,4 @@
-package org.noctisdev.sciallauthapi.infraestructure.dto.response;
+package org.noctisdev.sciallauthapi.application.dto.response;
 
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -2,11 +2,11 @@ package org.noctisdev.sciallauthapi.domain.events;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.ApplicationEvent;
 
 @Getter @Setter
-public class NotificationEmailEvent {
-    private String to;
+public class NotificationEvent {
+    private EventType type;
+    private String destination;
     private String subject;
-    private String body;
+    private String message;
 }

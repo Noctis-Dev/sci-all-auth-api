@@ -3,7 +3,7 @@ package org.noctisdev.sciallauthapi.application;
 import org.noctisdev.sciallauthapi.domain.models.Contact;
 import org.noctisdev.sciallauthapi.domain.models.Credential;
 import org.noctisdev.sciallauthapi.domain.models.Token;
-import org.noctisdev.sciallauthapi.infraestructure.dto.request.CredentialRequest;
+import org.noctisdev.sciallauthapi.application.dto.request.CredentialRequest;
 
 import java.util.UUID;
 

@@ -5,7 +5,7 @@ import org.noctisdev.sciallauthapi.domain.models.Contact;
 import org.noctisdev.sciallauthapi.domain.models.Credential;
 import org.noctisdev.sciallauthapi.domain.models.Token;
 import org.noctisdev.sciallauthapi.domain.repository.ICredentialRepository;
-import org.noctisdev.sciallauthapi.infraestructure.dto.request.CredentialRequest;
+import org.noctisdev.sciallauthapi.application.dto.request.CredentialRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

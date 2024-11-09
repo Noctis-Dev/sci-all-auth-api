@@ -1,4 +1,4 @@
-package org.noctisdev.sciallauthapi.infraestructure.dto.response;
+package org.noctisdev.sciallauthapi.application.dto.response;
 
 
 import org.noctisdev.sciallauthapi.domain.models.enums.UserStatus;

@@ -1,4 +1,4 @@
-package org.noctisdev.sciallauthapi.infraestructure.dto;
+package org.noctisdev.sciallauthapi.application.dto;
 
 import lombok.Builder;
 import lombok.Getter;

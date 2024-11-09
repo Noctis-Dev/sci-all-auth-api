@@ -1,11 +1,8 @@
 package org.noctisdev.sciallauthapi.domain.broker;
 
-import org.noctisdev.sciallauthapi.domain.events.NotificationEmailEvent;
-import org.noctisdev.sciallauthapi.domain.events.NotificationWhatsappEvent;
+import org.noctisdev.sciallauthapi.domain.events.NotificationEvent;
 
 public interface IMessageProducer {
 
-    void sendEmailNotification(NotificationEmailEvent event);
-    void sendWhatsappNotification(NotificationWhatsappEvent event);
-
+    void sendNotification(NotificationEvent event);
 }

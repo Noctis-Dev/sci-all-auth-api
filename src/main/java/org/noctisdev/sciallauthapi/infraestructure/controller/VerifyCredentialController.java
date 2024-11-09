@@ -1,7 +1,7 @@
 package org.noctisdev.sciallauthapi.infraestructure.controller;
 
 import org.noctisdev.sciallauthapi.application.IAuthService;
-import org.noctisdev.sciallauthapi.infraestructure.dto.BaseResponse;
+import org.noctisdev.sciallauthapi.application.dto.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

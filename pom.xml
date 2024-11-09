@@ -178,6 +178,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>sci-all-auth-api</finalName>
     </build>
 
 </project>
