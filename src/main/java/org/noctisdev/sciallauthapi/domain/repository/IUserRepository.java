@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface IUserRepository {
 
-    User create(@Valid User userEntity);
+    User save(@Valid User userEntity);
     User find(UUID userUuid);
 
 }

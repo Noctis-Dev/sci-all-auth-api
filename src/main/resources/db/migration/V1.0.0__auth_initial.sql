@@ -1,6 +1,7 @@
 CREATE TABLE `contacts` (
   `contact_id` bigint PRIMARY KEY AUTO_INCREMENT,
   `contact_uuid` varchar(36) UNIQUE NOT NULL,
+  `username` varchar(55) UNIQUE NOT NULL,
   `phone_number` varchar(15) UNIQUE,
   `email` varchar(55) UNIQUE,
   `created_at` date NOT NULL,

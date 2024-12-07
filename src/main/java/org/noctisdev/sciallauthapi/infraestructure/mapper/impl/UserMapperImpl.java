@@ -7,12 +7,14 @@ import org.noctisdev.sciallauthapi.infraestructure.entities.enums.UserStatusEnti
 import org.noctisdev.sciallauthapi.infraestructure.mapper.IContactMapper;
 import org.noctisdev.sciallauthapi.infraestructure.mapper.IUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapperImpl implements IUserMapper {
 
     @Autowired
+    @Qualifier("userContactMapperImpl")
     private IContactMapper contactMapper;
 
     @Override

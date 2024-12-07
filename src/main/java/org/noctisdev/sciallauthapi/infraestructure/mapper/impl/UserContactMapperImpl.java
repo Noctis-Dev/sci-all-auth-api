@@ -3,17 +3,10 @@ package org.noctisdev.sciallauthapi.infraestructure.mapper.impl;
 import org.noctisdev.sciallauthapi.domain.models.Contact;
 import org.noctisdev.sciallauthapi.infraestructure.entities.ContactEntity;
 import org.noctisdev.sciallauthapi.infraestructure.mapper.IContactMapper;
-import org.noctisdev.sciallauthapi.infraestructure.mapper.IUserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ContactMapperImpl implements IContactMapper {
-
-    @Autowired
-    @Qualifier("contactUserMapperImpl")
-    private IUserMapper userMapper;
+public class UserContactMapperImpl implements IContactMapper {
 
     @Override
     public Contact toDomain(ContactEntity entity) {
@@ -26,11 +19,6 @@ public class ContactMapperImpl implements IContactMapper {
         contact.setEmail(entity.getEmail());
         contact.setCreatedAt(entity.getCreatedAt());
 
-        if (entity.getUserEntity() == null) {
-            return contact;
-        }
-
-        contact.setUser(userMapper.toDomain(entity.getUserEntity()));
         return contact;
     }
 
@@ -45,11 +33,6 @@ public class ContactMapperImpl implements IContactMapper {
         contactEntity.setEmail(model.getEmail());
         contactEntity.setCreatedAt(model.getCreatedAt());
 
-        if (model.getUser() == null) {
-            return contactEntity;
-        }
-
-        contactEntity.setUserEntity(userMapper.toEntity(model.getUser()));
         return contactEntity;
     }
 }

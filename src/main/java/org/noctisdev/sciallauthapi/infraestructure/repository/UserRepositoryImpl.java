@@ -23,7 +23,7 @@ public class UserRepositoryImpl implements IUserRepository {
     private UserEntityRepository jpaRepository;
 
     @Override
-    public User create(@Valid User userEntity) {
+    public User save(@Valid User userEntity) {
         return mapper.toDomain(jpaRepository.save(mapper.toEntity(userEntity)));
     }
 

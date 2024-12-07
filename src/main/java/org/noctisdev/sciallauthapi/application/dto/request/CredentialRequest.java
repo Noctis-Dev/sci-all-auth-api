@@ -7,5 +7,6 @@ import java.util.UUID;
 public record CredentialRequest(
     EventType type,
     UUID contactUuid,
-    String password
+    String password,
+    String grade
 ) {}

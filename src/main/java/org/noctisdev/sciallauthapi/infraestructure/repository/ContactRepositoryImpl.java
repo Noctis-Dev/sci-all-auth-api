@@ -7,6 +7,7 @@ import org.noctisdev.sciallauthapi.domain.repository.IContactRepository;
 import org.noctisdev.sciallauthapi.infraestructure.mapper.IContactMapper;
 import org.noctisdev.sciallauthapi.infraestructure.repository.jpa.ContactEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class ContactRepositoryImpl implements IContactRepository {
 
     @Autowired
+    @Qualifier("contactMapperImpl")
     private IContactMapper mapper;
 
     @Autowired

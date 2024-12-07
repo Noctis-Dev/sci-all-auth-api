@@ -10,5 +10,6 @@ public interface IUserService {
 
     User find(UUID userUuid);
     User create(Contact contact);
+    User update(User user);
 
 }

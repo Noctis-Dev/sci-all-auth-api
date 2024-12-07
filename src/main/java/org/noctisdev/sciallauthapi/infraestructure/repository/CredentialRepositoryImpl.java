@@ -21,7 +21,7 @@ public class CredentialRepositoryImpl implements ICredentialRepository {
     private CredentialEntityRepository jpaRepository;
 
     @Override
-    public Credential create(@Valid Credential credentialEntity) {
+    public Credential save(@Valid Credential credentialEntity) {
         return mapper.toDomain(jpaRepository.save(mapper.toEntity(credentialEntity)));
     }
 

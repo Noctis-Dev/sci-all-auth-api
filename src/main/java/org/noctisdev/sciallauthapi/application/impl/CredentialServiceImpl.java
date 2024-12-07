@@ -24,11 +24,13 @@ public class CredentialServiceImpl implements ICredentialService {
 
     @Override
     public Credential create(CredentialRequest request, Token token, Contact contact) {
+
         Credential credential = toCredential(request);
         credential.setContact(contact);
         credential.setToken(token);
         credential.setPassword(encoder.encode(credential.getPassword()));
-        return repository.create(credential);
+
+        return repository.save(credential);
     }
 
     @Override
@@ -39,6 +41,11 @@ public class CredentialServiceImpl implements ICredentialService {
     @Override
     public Credential find(String phoneNumber) {
         return repository.find(phoneNumber);
+    }
+
+    @Override
+    public void update(Credential credential) {
+        repository.save(credential);
     }
 
     private Credential toCredential(CredentialRequest request) {

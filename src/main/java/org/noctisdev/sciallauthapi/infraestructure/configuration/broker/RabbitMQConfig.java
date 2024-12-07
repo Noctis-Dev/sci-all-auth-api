@@ -12,12 +12,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue notificationEmailQueue() {
-        return new Queue("EmailNotification", true);
-    }
-
-    @Bean
-    public Queue notificationWhatsappQueue() {
-        return new Queue("WhatsappNotification", true);
+        return new Queue("NotificationEvent", true);
     }
 
     @Bean

@@ -57,6 +57,7 @@ public class ContactServiceImpl implements IContactService {
         Contact contact = new Contact();
 
         contact.setContactUuid(UUID.randomUUID());
+        contact.setUsername(request.username());
         contact.setPhoneNumber(request.phoneNumber());
         contact.setEmail(request.email());
         contact.setCreatedAt(LocalDate.now());
@@ -67,6 +68,7 @@ public class ContactServiceImpl implements IContactService {
     private ContactResponse toContactResponse(Contact contact) {
         return new ContactResponse(
                 contact.getContactUuid(),
+                contact.getUsername(),
                 contact.getPhoneNumber(),
                 contact.getEmail(),
                 contact.getCreatedAt()

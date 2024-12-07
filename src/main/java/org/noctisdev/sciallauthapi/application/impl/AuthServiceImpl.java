@@ -82,7 +82,12 @@ public class AuthServiceImpl implements IAuthService {
 
         user.setActivatedAt(LocalDate.now());
         user.setStatus(UserStatus.ACTIVE);
+        user.setContact(credential.getContact());
+
         credential.setVerifiedAt(LocalDate.now());
+
+        credentialService.update(credential);
+        userService.update(user);
 
         return BaseResponse.builder()
                 .data(toUserResponse(user))

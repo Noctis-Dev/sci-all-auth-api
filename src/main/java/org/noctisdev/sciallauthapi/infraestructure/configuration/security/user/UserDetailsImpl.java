@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
@@ -52,5 +53,9 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getName() {
         return credential.getContact().getEmail();
+    }
+
+    public UUID getUserUuid() {
+        return credential.getContact().getUser().getUserUuid();
     }
 }

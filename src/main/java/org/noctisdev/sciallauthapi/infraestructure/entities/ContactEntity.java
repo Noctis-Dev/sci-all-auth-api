@@ -26,6 +26,11 @@ public class ContactEntity {
     @Column(name = "contact_uuid", nullable = false, length = 36)
     private UUID contactUuid;
 
+    @NotNull
+    @Size(max = 55)
+    @Column(name = "username", length = 55, nullable = false)
+    private String username;
+
     @Size(max = 15)
     @Column(name = "phone_number", length = 15)
     private String phoneNumber;

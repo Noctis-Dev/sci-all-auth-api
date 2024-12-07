@@ -75,6 +75,7 @@ public class UserAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         response.addHeader("Authorization", jwtConfig.getTokenPrefix() + token);
 
         JwtResponse jwtResponse = new JwtResponse();
+        jwtResponse.setUserUuid(userDetails.getUserUuid());
         jwtResponse.setAccessToken(token);
         jwtResponse.setRefreshToken(refreshToken);
 

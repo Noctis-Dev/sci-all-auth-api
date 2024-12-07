@@ -28,9 +28,6 @@ public class ApplicationSecurityConfig {
     private JwtAuthorizationFilter authorizationFilter;
 
     @Autowired
-    private RateLimitFilter rateLimitFilter;
-
-    @Autowired
     private JwtConfig jwtConfig;
 
     @Autowired
@@ -49,7 +46,6 @@ public class ApplicationSecurityConfig {
 
         /* FILTERS */
         http.addFilter(userAuthenticationFilter)
-//                .addFilterBefore(rateLimitFilter, UserAuthenticationFilter.class)
                 .addFilterBefore(authorizationFilter, UserAuthenticationFilter.class);
 
         http.authorizeHttpRequests(auth -> {

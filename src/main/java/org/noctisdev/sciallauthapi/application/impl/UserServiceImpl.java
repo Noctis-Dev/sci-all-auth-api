@@ -31,6 +31,11 @@ public class UserServiceImpl implements IUserService {
         user.setStatus(UserStatus.INACTIVE);
         user.setContact(contact);
 
-        return repository.create(user);
+        return repository.save(user);
+    }
+
+    @Override
+    public User update(User user) {
+        return repository.save(user);
     }
 }

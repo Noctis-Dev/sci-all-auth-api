@@ -1,6 +1,7 @@
 package org.noctisdev.sciallauthapi.domain.models;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -16,6 +17,9 @@ public class Contact {
     @NotNull
     @org.hibernate.validator.constraints.UUID
     private UUID contactUuid;
+
+    @NotBlank
+    private String username;
 
     @Size(max = 15)
     private String phoneNumber;

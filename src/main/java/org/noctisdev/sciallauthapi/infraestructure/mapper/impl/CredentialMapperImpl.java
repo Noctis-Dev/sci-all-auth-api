@@ -6,6 +6,7 @@ import org.noctisdev.sciallauthapi.infraestructure.mapper.IContactMapper;
 import org.noctisdev.sciallauthapi.infraestructure.mapper.ICredentialMapper;
 import org.noctisdev.sciallauthapi.infraestructure.mapper.ITokenMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,6 +16,7 @@ public class CredentialMapperImpl implements ICredentialMapper {
     private ITokenMapper tokenMapper;
 
     @Autowired
+    @Qualifier("contactMapperImpl")
     private IContactMapper contactMapper;
 
     @Override
